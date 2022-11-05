@@ -57,11 +57,25 @@ void swapRow(PImage img, int n) {
   }
 }
 
+void swapColumn(PImage img, int n) {
+  color[] column = new color[height];
+  
+  for(int i = 0; i < height; i++) {
+    column[i] = img.get(n, i);
+  }
+  
+  column = reverse(column);
+  
+  for(int i = 0; i < height; i++) {
+    img.set(n, i, column[i]);
+  }
+}
+
 void encrypt(PImage img, int[] encryptionKey) {
   int i = 0;
   
   while(i < encryptionKey.length) {
-    swapRow(img, encryptionKey[i]);
+    swapColumn(img, encryptionKey[i]);
     i++;
   }
 }
